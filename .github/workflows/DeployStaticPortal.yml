@@ -48,33 +48,19 @@ jobs:
     # Publish updates to cloudflare
     - name: Publish to Cloudflare Pages to main
       if: endsWith(github.ref, '/main')
-      uses: cloudflare/pages-action@v1
+      uses: cloudflare/wrangler-action@2.0.0
       with:
         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        projectName: ${{ secrets.CLOUDFLARE_PROJECT_NAME }}
-        directory: static-portal
-        # Optional: Enable this if you want to have GitHub Deployments triggered
-        gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-        # Optional: Switch what branch you are publishing to.
-        # By default this will be the branch which triggered this workflow
-        branch: main
-        # Optional: Change the working directory
-        # workingDirectory: my-site
-        # Optional: Change the Wrangler version, allows you to point to a specific version or a tag such as `beta`
-        wranglerVersion: '3'
+        command: pages publish static-portal --branch=main --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME }}
     
     - name: Publish to Cloudflare Pages to dev
       if: endsWith(github.ref, '/dev')
-      uses: cloudflare/pages-action@v1
+      uses: cloudflare/wrangler-action@2.0.0
       with:
         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        projectName: ${{ secrets.CLOUDFLARE_PROJECT_NAME }}
-        directory: static-portal
-        gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-        branch: dev
-        wranglerVersion: '3'
+        command: pages publish static-portal --branch=dev --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME }}
 
       # Upload Portal Artifact
     - name: Upload Artifact
