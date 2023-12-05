@@ -52,7 +52,7 @@ jobs:
       with:
         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        command: pages publish static-portal --branch=main --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME }}
+        command: pages deploy static-portal --branch=main --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME }}
     
     - name: Publish to Cloudflare Pages to dev
       if: endsWith(github.ref, '/dev')
