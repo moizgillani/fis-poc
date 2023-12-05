@@ -21,6 +21,9 @@ toc:
   - file: getting-started/whats-new.md
     slug: whats-new
     page: What's New
+  - file: custom-content/customization.md
+    slug: custom-content
+    page: Add customization
   group: Getting Started
   slug: getting-started
 - items:
